@@ -1,0 +1,88 @@
+version: "3.4"
+
+services:
+  teachaway-mysql:
+    container_name: teachaway-mysql
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "secret"
+      MYSQL_DATABASE: "teachaway-swapi"
+    networks:
+      default:
+        aliases:
+          - ${MYSQL_HOST}
+    ports:
+      - 3306:3306
+    volumes:
+      - /home/eabarca/data/mysql:/var/lib/mysql
+      
+  teachaway-mongodb:
+    container_name: teachaway-mongodb
+    image: mongo
+    restart: always
+    networks:
+      default:
+        aliases:
+          - ${MONGODB_HOST}
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    expose:
+      - 27017
+    ports:
+      - 27017:27017
+    volumes:
+      - /home/eabarca/data/mongodb:/data/db
+
+  teachaway-swapi:
+    container_name: teachaway-swapi
+    build: 
+      context: .
+      dockerfile: images/php7.4/Dockerfile
+      # args:
+        # GITHUB_TOKEN: ${GITHUB_TOKEN}
+    restart: always
+    networks:
+      default:
+        aliases:
+          - ${SWAPI_HOST}
+    expose:
+      - 80
+    ports:
+      - 8080:80
+    links: 
+      - teachaway-mysql
+      - teachaway-mongodb
+    working_dir: /app/
+    environment:
+      # nginx config vars
+      WEB_DOCUMENT_ROOT: "/app/public"
+      WEB_ALIAS_DOMAIN: ${SWAPI_HOST}
+      # php/fpm config vars
+      PHP_DISPLAY_ERRORS: 1
+      PHP_MEMORY_LIMIT: 2048M
+      PHP_MAX_EXECUTION_TIME: -1
+      PHP_EXTENSION_DEBUG: 1
+      FPM_PROCESS_IDLE_TIMEOUT: 1800
+      FPM_REQUEST_TERMINATE_TIMEOUT: 1800
+      # phpstorm config vars
+      PHP_IDE_CONFIG: "serverName=${SWAPI_HOST}"
+      # xdebug config vars
+      php.xdebug.default_enable: 1
+      php.xdebug.idekey: "PHPSTORM"
+      php.xdebug.max_nesting_level: 1000
+      # php.xdebug.profiler_enable: 1
+      # php.xdebug.profiler_output_dir: "/app/storage/logs/xdebug_profiler.log"
+      php.xdebug.remote_autostart: 1
+      php.xdebug.remote_connect_back: 0
+      php.xdebug.remote_enable: 1
+      php.xdebug.remote_host: ${LOCAL_IP}
+      #php.xdebug.remote_log: "/app/storage/logs/xdebug.log"
+      php.xdebug.remote_port: 9000
+    volumes:
+      - ${SWAPI_PATH}:/app/
+
+networks:
+  default:
+    driver: bridge
