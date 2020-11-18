@@ -2,16 +2,22 @@
 
 ### Description
 **SWAPI** provides information about the Star Wars universe.<br>
-This implementation extends SWAPI and enrich with inventory of starships and vehicles.<br>
+This implementation extends SWAPI and enrichs it with inventory of starships and vehicles.<br>
+
 
 ### How it works?
 When you make a request, this API will request to /vehicles or /starships from SWAPI and automatically go to every available page and count results, then save to database with payload.<br>
 Every endpoint has its own validations that makes you easier to know how to use it.<br>
-**NOTE:** Guzzle has 60 seconds for timeout, after this asumes that SWAPI service didnt response and use an empty response as default.
+**NOTE:** timeout has been setted to 60 seconds, then API asumes that SWAPI service didnt response and use an empty response as default.
 
 ### Requirements
 - Docker
 - Docker Compose
+
+## Technologies
+- Docker
+- PHP - Laravel
+- MySQL
 
 ### Important
 The docker-compose.yml file use 8080 port for API and 3306 port for database.
