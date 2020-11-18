@@ -1,70 +1,118 @@
-# Inventory resource
+## Teachaway challenge - Extending "The Star Wars API" (SWAPI)
 
-## GET /inventory<br>
-* Get how many Death Stars are in the inventory of starships:
+### Description
+**SWAPI** provides information about the Star Wars universe.<br>
+This implementation extends SWAPI and enrich with inventory of starships and vehicles.<br>
+
+### How it works?
+When you make a request, this API will request to /vehicles or /starships from SWAPI and automatically go to every available page and count results, then save to database with payload.<br>
+Every endpoint has its own validations that makes you easier to know how to use it. 
+
+### Requirements
+- Docker
+- Docker Compose
+
+### Important
+The docker-compose.yml file use 8080 port for API and 3306 port for database.
+
+### Inventory resources
+
+#### GET /inventory<br>
+* This resource will match all vehicles or starships tha partial **match** with **name** and model property and response with json like:
 ``` 
-curl --request GET '/inventory?unit_type=starship?tags=death_stars'
+curl --location --request GET 'http://0.0.0.0:8080/api/inventory?unit_type=vehicle&tags=Death%20Star' --header 'Accept: application/json'
 {
-  "description": "How many Death Stars are in the inventory of starships",
-  "payload": {},
-  "count": 5
-}
-```
-* Get how many vehicles has 3 or more passangers:
-```
-curl --request GET '/inventory?unit_type=vehicle?tags=passangers:3'
-{
-  "description": "How many vehicles has 3 or more passangers",
-  "payload": {},
-  "count": 10
+    "id": 1,
+    "unit_type": "vehicle",
+    "criteria": "partial_match",
+    "tag": "star",
+    "count": 3,
+    "payload": [...],
+    "created_at": "2020-11-18 07:20:39",
+    "updated_at": "2020-11-18 07:20:39",
 }
 ```
 
-## PATCH /inventory
-* Set the number Death Stars in the inventory of starships:
+### PATCH /inventory/{id}
+* Set the number Death Stars in the inventory of starships:<br>
+**NOTE**: if you modify count, this would not match with same criteria.
 ```
-curl --request PATCH '/inventory?unit_type=vehicle&tags=death_stars' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'count=15'
+curl --request PATCH 'http://0.0.0.0:8080/api/inventory/1' --header 'Accept: application/json' --header 'Content-Type: application/x-www-form-urlencoded' --data-urlencode 'count=15'
 {
-  "description": "How many Death Stars are in the inventory of starships",
-  "payload": {},
-  "count": 15
+    "id": 1,
+    "unit_type": "vehicle",
+    "criteria": "partial_match",
+    "tag": "star",
+    "count": 15,
+    "payload": [...],
+    "created_at": "2020-11-18 07:20:39",
+    "updated_at": "2020-11-18 07:20:39",
 }
 ```
 
-## POST /inventory/increment
+## POST /inventory/{id}/increment
 * Increment the total number of units for a specific starship or vehicle:
+**NOTE**: if you increment count, this would not match with SWAPI same criteria.
 ```
-curl --request POST '/inventory/increment?unit_type=vehicle'
+curl --location --request POST 'http://0.0.0.0:8080/api/inventory/1/increment' --header 'Accept: application/json'
 {
-  "description": "Total number of units",
-  "payload": {},
-  "count": 14
+    "id": 1,
+    "unit_type": "vehicle",
+    "criteria": "partial_match",
+    "tag": "star",
+    "count": 16,
+    "payload": [...],
+    "created_at": "2020-11-18 07:20:39",
+    "updated_at": "2020-11-18 07:20:39",
 }
 ```
 
-## POST /inventory/decrement
+## POST /inventory/{id}/decrement
 * Decrement the total number of units for a specific starship or vehicle:
+**NOTE**: if you decrement count, this would not match with SWAPI same criteria.
 ```
-curl --request POST '/inventory/decrement?unit_type=vehicle'
+curl --location --request POST 'http://0.0.0.0:8080/api/inventory/1/decrement' --header 'Accept: application/json'
 {
-  "description": "Total number of units",
-  "payload": {},
-  "count": 16
+    "id": 1,
+    "unit_type": "vehicle",
+    "criteria": "partial_match",
+    "tag": "star",
+    "count": 15,
+    "payload": [...],
+    "created_at": "2020-11-18 07:20:39",
+    "updated_at": "2020-11-18 07:20:39",
 }
 ```
 
-## One way to achieve this is to use some predefined tags, like:<br>
-- tags={'name': 'death_stars'} (where **death_stars** relates to starships/vehicles attribute's value, eg: 'Death Stars')<br>
-- tags={'passangers': 3} (where **passangers** relates to vehicles with GTE (greater than or equal) passangers attribute's value)<br>
+### How to make it work
+1. Clone project:
+    ```shell script
+    git clone https://github.com/emiliosa/teachaway-challenge.git
+    ```
+2. Docker up containers, go to docker/ path and run:<br>
+    ```shell script
+    docker-compose up -d --build
+    ```
+3. Run composer: 
+    ```shell script
+    docker exec -i teachaway-swapi composer install
+    ```
+4. Create schema: 
+    ```shell script
+    docker exec -i teachaway-mysql mysql -uroot -psecret <<< "CREATE SCHEMA teachaway_swapi;"
+    ```
+5. Run migrations: 
+    ```shell script
+    docker exec -i teachaway-swapi php artisan migrate:refresh
+    ```
+6. Run test (unit + feature):
+    ```shell script
+    docker exec -i teachaway-swapi php vendor/phpunit/phpunit/phpunit --testsuite Unit --debug
+    docker exec -i teachaway-swapi php vendor/phpunit/phpunit/phpunit --testsuite Feature --debug
+    ```
+7. Make request:<br>
+You can hit API using http://0.0.0.0:8080/api/inventory 
 
-# Questions
-* <i>Allow to get the total number of units for a specific starship or vehicle. Example: get how many Death Stars are in the inventory of starships</i><br>
-If "Death Stars" relates to starship.name of vehicle.name attribute, service would query /starships or /vehicles and filter by this "Death Stars" name.
-After this i would save count value in inventory model.
-* <i>Allow to set the total number of units for a specific starship or vehicle. Example: set the number Death Stars in the inventory of starships</i><br>
-This count value would not match with provided by querying /starships or /vehicles services, so maybe this would not be consistent.
-Am i in the rigth path or did i misunderstund it?
-
-
+### TODO
+- Add multiple tag's (e.g: 'passengers_count', 'films_count', GTE (greater than or equal) passangers attribute's value).
+- Add JWT authorization.

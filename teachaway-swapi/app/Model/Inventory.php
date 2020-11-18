@@ -19,9 +19,14 @@ class Inventory extends Model
     const CRITERIA_LT = 'lower_than';
     const CRITERIA_GTE = 'greater_than_or_equal';
     const CRITERIA_LTE = 'lower_than_or_equal';
+    CONST UNIT_TYPE_STARSHIP_NO_TAGS = self::UNIT_TYPE_STARSHIP . '_no_tags';
+    CONST UNIT_TYPE_VEHICLE_NO_TAGS = self::UNIT_TYPE_VEHICLE . '_no_tags';
+    CONST UNIT_TYPE_STARSHIP_EMPTY = self::UNIT_TYPE_STARSHIP . '_empty';
+    CONST UNIT_TYPE_VEHICLE_EMPTY = self::UNIT_TYPE_VEHICLE . '_empty';
 
     protected $table = 'inventory';
     protected $fillable = [
+        'id',
         'unit_type',
         'criteria',
         'tag',
@@ -38,7 +43,9 @@ class Inventory extends Model
     public function toArray()
     {
         $attributes = parent::toArray();
-        $attributes['payload'] = json_decode($this->payload);
+        $attributes['payload'] = $this->payload !== null
+            ? json_decode($this->payload, true)
+            : [];
 
         return $attributes;
     }

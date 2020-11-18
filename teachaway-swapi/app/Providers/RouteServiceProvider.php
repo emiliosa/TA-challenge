@@ -33,7 +33,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        Route::model('inventory', Inventory::class);
+        //Route::model('inventory', Inventory::class);
     }
 
     /**

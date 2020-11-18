@@ -2,16 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Exceptions\InventoryException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\IndexInventoryRequest;
 use App\Http\Requests\UpdateInventoryRequest;
-use App\Model\Inventory;
 use App\Repository\InventoryRepository;
-use Illuminate\Database\QueryException;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Validation\ValidationException;
 
 class InventoryController extends Controller
 {
@@ -54,56 +49,41 @@ class InventoryController extends Controller
     /**
      * Update the specified Inventory count attribute.
      *
+     * @param int $id
      * @param \App\Http\Requests\UpdateInventoryRequest $request
-     * @param \App\Model\Inventory $inventory
+     * @param \App\Repository\InventoryRepository $inventoryRepository
      * @return \Illuminate\Http\JsonResponse
-     * @throws \Exception
+     * @throws \App\Exceptions\InventoryException
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public function update(UpdateInventoryRequest $request, Inventory $inventory)
+    public function update(int $id, UpdateInventoryRequest $request, InventoryRepository $inventoryRepository)
     {
-        $inventory->count = $request->input('count');
-        $inventory->save();
-
-        return Response::json($inventory);
+        return Response::json($inventoryRepository->update($id, $request->input('count')));
     }
 
     /**
      * Increments the specified Inventory count attribute.
      *
-     * @param \App\Model\Inventory $inventory
+     * @param int $id
+     * @param \App\Repository\InventoryRepository $inventoryRepository
      * @return \Illuminate\Http\JsonResponse
      */
-    public function increment(Inventory $inventory)
+    public function increment(int $id, InventoryRepository $inventoryRepository)
     {
-        $inventory->count++;
-        $inventory->save();
-
-        return Response::json($inventory);
+        return Response::json($inventoryRepository->increment($id));
     }
 
     /**
      * Decrements the specified Inventory count attribute.
      *
-     * @param \App\Model\Inventory $inventory
+     * @param int $id
+     * @param \App\Repository\InventoryRepository $inventoryRepository
      * @return \Illuminate\Http\JsonResponse
      * @throws \App\Exceptions\InventoryException
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public function decrement(Inventory $inventory)
+    public function decrement(int $id, InventoryRepository $inventoryRepository)
     {
-        try {
-            $inventory->count--;
-            $inventory->save();
-        } catch (QueryException $e) {
-            Log::error(
-                "Action: decrement" . PHP_EOL .
-                "Inventory: id={$inventory->id} count={$inventory->count}" . PHP_EOL .
-                "Message: {$e->getMessage()}" . PHP_EOL .
-                "Code: {$e->getCode()}" . PHP_EOL .
-                "Trace: {$e->getTraceAsString()}"
-            );
-            throw new InventoryException("Cannot decrement to negative count", 400);
-        }
-
-        return Response::json($inventory);
+        return Response::json($inventoryRepository->decrement($id));
     }
 }

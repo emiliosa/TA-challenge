@@ -822,17 +822,14 @@ SELECT|sys.sys_config:null
     <column id="248" parent="235" name="criteria">
       <Position>3</Position>
       <DataType>enum(&apos;partial_match&apos;, &apos;equal&apos;, &apos;greater_than&apos;, &apos;lower_than&apos;, &apos;greater_than_or_equal&apos;, &apos;lower_than_or_equal&apos;)|0e</DataType>
-      <NotNull>1</NotNull>
     </column>
     <column id="249" parent="235" name="tag">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
     </column>
     <column id="250" parent="235" name="payload">
       <Position>5</Position>
       <DataType>json|0s</DataType>
-      <NotNull>1</NotNull>
     </column>
     <column id="251" parent="235" name="count">
       <Position>6</Position>

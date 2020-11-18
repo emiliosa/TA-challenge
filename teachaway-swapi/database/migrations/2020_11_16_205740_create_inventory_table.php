@@ -14,6 +14,10 @@ class CreateInventoryTable extends Migration
      */
     public function up()
     {
+        $unitType = [
+            Inventory::UNIT_TYPE_VEHICLE,
+            Inventory::UNIT_TYPE_STARSHIP
+        ];
         $criteria = [
             Inventory::CRITERIA_PM,
             Inventory::CRITERIA_EQ,
@@ -22,12 +26,12 @@ class CreateInventoryTable extends Migration
             Inventory::CRITERIA_GTE,
             Inventory::CRITERIA_LTE,
         ];
-        Schema::create('inventory', function (Blueprint $table) use ($criteria) {
+        Schema::create('inventory', function (Blueprint $table) use ($unitType, $criteria) {
             $table->bigIncrements('id');
-            $table->enum('unit_type', ['vehicle', 'starship'])->nullable(false);
-            $table->enum('criteria', $criteria)->nullable(false);
-            $table->string('tag')->nullable(false);
-            $table->json('payload')->nullable(false);
+            $table->enum('unit_type', $unitType)->nullable(false);
+            $table->enum('criteria', $criteria)->nullable(true);
+            $table->string('tag')->nullable(true);
+            $table->json('payload')->nullable(true);
             $table->integer('count')->default(0)->nullable(false)->unsigned();
             $table->timestamps();
             $table->unique(['unit_type', 'tag', 'criteria'], 'unique_unit_type_field_tag_criteria');

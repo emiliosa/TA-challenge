@@ -15,33 +15,13 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - /home/eabarca/data/mysql:/var/lib/mysql
+      - ${MYSQL_PATH}:/var/lib/mysql
       
-  teachaway-mongodb:
-    container_name: teachaway-mongodb
-    image: mongo
-    restart: always
-    networks:
-      default:
-        aliases:
-          - ${MONGODB_HOST}
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
-    expose:
-      - 27017
-    ports:
-      - 27017:27017
-    volumes:
-      - /home/eabarca/data/mongodb:/data/db
-
   teachaway-swapi:
     container_name: teachaway-swapi
     build: 
       context: .
       dockerfile: images/php7.4/Dockerfile
-      # args:
-        # GITHUB_TOKEN: ${GITHUB_TOKEN}
     restart: always
     networks:
       default:
@@ -53,7 +33,6 @@ services:
       - 8080:80
     links: 
       - teachaway-mysql
-      - teachaway-mongodb
     working_dir: /app/
     environment:
       # nginx config vars

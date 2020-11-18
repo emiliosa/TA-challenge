@@ -20,7 +20,7 @@ Route::middleware('json.response')
     ->prefix('/inventory')
     ->group(function () {
         Route::get('/', 'InventoryController@index');
-        Route::prefix('{inventory}')->group(function () {
+        Route::prefix('{id}')->group(function () {
             Route::patch('/', 'InventoryController@update');
             Route::post('/increment', 'InventoryController@increment');
             Route::post('/decrement', 'InventoryController@decrement');

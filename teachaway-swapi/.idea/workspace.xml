@@ -14,6 +14,23 @@
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="tsconfig.json" />
+      </list>
+    </option>
+  </component>
+  <component name="PhpServers">
+    <servers>
+      <server host="teachaway-swapi.localhost" id="6deae775-0e48-4d62-9c2f-7e00b6b16200" name="teachaway-swapi.localhost" port="8080" use_path_mappings="true">
+        <path_mappings>
+          <mapping local-root="$PROJECT_DIR$" remote-root="/app" />
+          <mapping local-root="$PROJECT_DIR$/public" remote-root="/app/public" />
+        </path_mappings>
+      </server>
+    </servers>
+  </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="docker_teachaway-swapi:latest">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/symfony/translation-contracts" />
@@ -129,7 +146,7 @@
     <property name="DatabaseDriversLRU" value="mysql&#10;mongo" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/Unit/Rules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/database/factories" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -137,30 +154,40 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="php.test.frameworks.configurable" />
+    <property name="settings.editor.selected.configurable" value="settings.php.debug.servers" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/storage/tests" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/database/factories" />
+      <recent name="$PROJECT_DIR$/storage/testing/data/inventory" />
+      <recent name="$PROJECT_DIR$/storage/testing/data/SWAPI" />
+      <recent name="$PROJECT_DIR$/tests/data/SWAPI" />
       <recent name="$PROJECT_DIR$/tests/Unit/Rules" />
-      <recent name="$PROJECT_DIR$/app/Http/Requests" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.UnitTypeRule.tags_validation_message">
-    <configuration name="TagsRule.tags_validation_message" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Unit\Rules\TagsRule" configuration_file="/app/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/Rules/TagsRule.php" method="tags_validation_message" scope="Method" />
+  <component name="RunManager" selected="PHPUnit.Unit">
+    <configuration name="InventoryController.decrements_vehicle_inventory_resource_count" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\Http\Controllers\API\InventoryController" configuration_file="/app/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/Http/Controllers/API/InventoryController.php" method="decrements_vehicle_inventory_resource_count" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="TagsRule.tags_validation_passes" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Unit\Rules\TagsRule" configuration_file="/app/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/Rules/TagsRule.php" method="tags_validation_passes" scope="Method" />
+    <configuration name="InventoryController.decrements_vehicle_inventory_resource_fails_decrements_to_negative_count" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\Http\Controllers\API\InventoryController" configuration_file="/app/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/Http/Controllers/API/InventoryController.php" method="decrements_vehicle_inventory_resource_fails_decrements_to_negative_count" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="UnitTypeRule.tags_validation_message" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Unit\Rules\UnitTypeRule" configuration_file="/app/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/Rules/UnitTypeRule.php" method="tags_validation_message" scope="Method" />
+    <configuration name="InventoryController.decrements_vehicle_inventory_resource_fails_to_negative_count" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\Http\Controllers\API\InventoryController" configuration_file="/app/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/Http/Controllers/API/InventoryController.php" method="decrements_vehicle_inventory_resource_fails_to_negative_count" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="UnitTypeRule.tags_validation_passes" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Unit\Rules\UnitTypeRule" configuration_file="/app/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/Rules/UnitTypeRule.php" method="tags_validation_passes" scope="Method" />
+    <configuration name="InventoryController.decrements_vehicle_inventory_resource_not_found" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\Http\Controllers\API\InventoryController" configuration_file="/app/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/Http/Controllers/API/InventoryController.php" method="decrements_vehicle_inventory_resource_not_found" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unit" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner configuration_file="/app/phpunit.xml" directory="$PROJECT_DIR$/tests/Unit" />
       <method v="2" />
     </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -169,10 +196,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="PHPUnit.UnitTypeRule.tags_validation_message" />
-        <item itemvalue="PHPUnit.UnitTypeRule.tags_validation_passes" />
-        <item itemvalue="PHPUnit.TagsRule.tags_validation_message" />
-        <item itemvalue="PHPUnit.TagsRule.tags_validation_passes" />
+        <item itemvalue="PHPUnit.Unit" />
+        <item itemvalue="PHPUnit.InventoryController.decrements_vehicle_inventory_resource_fails_to_negative_count" />
+        <item itemvalue="PHPUnit.InventoryController.decrements_vehicle_inventory_resource_fails_decrements_to_negative_count" />
+        <item itemvalue="PHPUnit.InventoryController.decrements_vehicle_inventory_resource_not_found" />
+        <item itemvalue="PHPUnit.InventoryController.decrements_vehicle_inventory_resource_count" />
       </list>
     </recent_temporary>
   </component>
@@ -184,7 +212,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1605558455477</updated>
-      <workItem from="1605558456699" duration="36896000" />
+      <workItem from="1605558456699" duration="80620000" />
     </task>
     <servers />
   </component>
@@ -204,6 +232,10 @@
       <screen x="62" y="27" width="1858" height="1053" />
     </state>
     <state x="586" y="215" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/62.27.1858.1053@62.27.1858.1053" timestamp="1605561285115" />
+    <state x="162" y="127" width="1658" height="853" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1605680661327">
+      <screen x="62" y="27" width="1858" height="1053" />
+    </state>
+    <state x="162" y="127" width="1658" height="853" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/62.27.1858.1053@62.27.1858.1053" timestamp="1605680661327" />
     <state x="780" y="234" width="412" height="645" key="#com.intellij.ide.util.MemberChooser" timestamp="1605575583940">
       <screen x="62" y="27" width="1858" height="1053" />
     </state>
@@ -212,38 +244,86 @@
       <screen x="62" y="27" width="1858" height="1053" />
     </state>
     <state x="62" y="27" width="958" height="1053" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/62.27.1858.1053@62.27.1858.1053" timestamp="1605622310394" />
-    <state x="724" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1605625070331">
+    <state x="724" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1605680792630">
       <screen x="62" y="27" width="1858" height="1053" />
     </state>
-    <state x="724" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/62.27.1858.1053@62.27.1858.1053" timestamp="1605625070330" />
-    <state width="1812" height="275" key="GridCell.Tab.0.bottom" timestamp="1605625315453">
+    <state x="724" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/62.27.1858.1053@62.27.1858.1053" timestamp="1605680792630" />
+    <state x="749" y="298" key="#xdebugger.evaluate" timestamp="1605669279797">
       <screen x="62" y="27" width="1858" height="1053" />
     </state>
-    <state width="1812" height="275" key="GridCell.Tab.0.bottom/62.27.1858.1053@62.27.1858.1053" timestamp="1605625315453" />
-    <state width="1812" height="275" key="GridCell.Tab.0.center" timestamp="1605625315452">
+    <state x="749" y="298" key="#xdebugger.evaluate/62.27.1858.1053@62.27.1858.1053" timestamp="1605669279797" />
+    <state width="797" height="506" key="DebuggerActiveHint" timestamp="1605669242671">
       <screen x="62" y="27" width="1858" height="1053" />
     </state>
-    <state width="1812" height="275" key="GridCell.Tab.0.center/62.27.1858.1053@62.27.1858.1053" timestamp="1605625315452" />
-    <state width="1812" height="275" key="GridCell.Tab.0.left" timestamp="1605625315452">
+    <state width="797" height="506" key="DebuggerActiveHint/62.27.1858.1053@62.27.1858.1053" timestamp="1605669242671" />
+    <state width="1812" height="275" key="GridCell.Tab.0.bottom" timestamp="1605684586514">
       <screen x="62" y="27" width="1858" height="1053" />
     </state>
-    <state width="1812" height="275" key="GridCell.Tab.0.left/62.27.1858.1053@62.27.1858.1053" timestamp="1605625315452" />
-    <state width="1812" height="275" key="GridCell.Tab.0.right" timestamp="1605625315452">
+    <state width="1812" height="275" key="GridCell.Tab.0.bottom/62.27.1858.1053@62.27.1858.1053" timestamp="1605684586514" />
+    <state width="1812" height="275" key="GridCell.Tab.0.center" timestamp="1605684586513">
       <screen x="62" y="27" width="1858" height="1053" />
     </state>
-    <state width="1812" height="275" key="GridCell.Tab.0.right/62.27.1858.1053@62.27.1858.1053" timestamp="1605625315452" />
-    <state x="573" y="273" width="825" height="568" key="NewPhpClassDialog" timestamp="1605622677031">
+    <state width="1812" height="275" key="GridCell.Tab.0.center/62.27.1858.1053@62.27.1858.1053" timestamp="1605684586513" />
+    <state width="1812" height="275" key="GridCell.Tab.0.left" timestamp="1605684586513">
       <screen x="62" y="27" width="1858" height="1053" />
     </state>
-    <state x="573" y="273" width="825" height="568" key="NewPhpClassDialog/62.27.1858.1053@62.27.1858.1053" timestamp="1605622677031" />
-    <state x="480" y="188" width="1022" height="737" key="SettingsEditor" timestamp="1605625590017">
+    <state width="1812" height="275" key="GridCell.Tab.0.left/62.27.1858.1053@62.27.1858.1053" timestamp="1605684586513" />
+    <state width="1812" height="275" key="GridCell.Tab.0.right" timestamp="1605684586514">
       <screen x="62" y="27" width="1858" height="1053" />
     </state>
-    <state x="480" y="188" width="1022" height="737" key="SettingsEditor/62.27.1858.1053@62.27.1858.1053" timestamp="1605625590017" />
-    <state x="872" y="443" width="367" height="283" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1605597752374">
+    <state width="1812" height="275" key="GridCell.Tab.0.right/62.27.1858.1053@62.27.1858.1053" timestamp="1605684586514" />
+    <state width="1812" height="306" key="GridCell.Tab.1.bottom" timestamp="1605676291700">
       <screen x="62" y="27" width="1858" height="1053" />
     </state>
-    <state x="872" y="443" width="367" height="283" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/62.27.1858.1053@62.27.1858.1053" timestamp="1605597752374" />
+    <state width="1812" height="306" key="GridCell.Tab.1.bottom/62.27.1858.1053@62.27.1858.1053" timestamp="1605676291700" />
+    <state width="1812" height="306" key="GridCell.Tab.1.center" timestamp="1605676291700">
+      <screen x="62" y="27" width="1858" height="1053" />
+    </state>
+    <state width="1812" height="306" key="GridCell.Tab.1.center/62.27.1858.1053@62.27.1858.1053" timestamp="1605676291700" />
+    <state width="1812" height="306" key="GridCell.Tab.1.left" timestamp="1605676291698">
+      <screen x="62" y="27" width="1858" height="1053" />
+    </state>
+    <state width="1812" height="306" key="GridCell.Tab.1.left/62.27.1858.1053@62.27.1858.1053" timestamp="1605676291698" />
+    <state width="1812" height="306" key="GridCell.Tab.1.right" timestamp="1605676291700">
+      <screen x="62" y="27" width="1858" height="1053" />
+    </state>
+    <state width="1812" height="306" key="GridCell.Tab.1.right/62.27.1858.1053@62.27.1858.1053" timestamp="1605676291700" />
+    <state width="1812" height="248" key="GridCell.Tab.2.bottom" timestamp="1605668633764">
+      <screen x="62" y="27" width="1858" height="1053" />
+    </state>
+    <state width="1812" height="248" key="GridCell.Tab.2.bottom/62.27.1858.1053@62.27.1858.1053" timestamp="1605668633764" />
+    <state width="1812" height="248" key="GridCell.Tab.2.center" timestamp="1605668633764">
+      <screen x="62" y="27" width="1858" height="1053" />
+    </state>
+    <state width="1812" height="248" key="GridCell.Tab.2.center/62.27.1858.1053@62.27.1858.1053" timestamp="1605668633764" />
+    <state width="1812" height="248" key="GridCell.Tab.2.left" timestamp="1605668633764">
+      <screen x="62" y="27" width="1858" height="1053" />
+    </state>
+    <state width="1812" height="248" key="GridCell.Tab.2.left/62.27.1858.1053@62.27.1858.1053" timestamp="1605668633764" />
+    <state width="1812" height="248" key="GridCell.Tab.2.right" timestamp="1605668633764">
+      <screen x="62" y="27" width="1858" height="1053" />
+    </state>
+    <state width="1812" height="248" key="GridCell.Tab.2.right/62.27.1858.1053@62.27.1858.1053" timestamp="1605668633764" />
+    <state x="573" y="273" width="945" height="568" key="NewPhpClassDialog" timestamp="1605646036154">
+      <screen x="62" y="27" width="1858" height="1053" />
+    </state>
+    <state x="573" y="273" width="945" height="568" key="NewPhpClassDialog/62.27.1858.1053@62.27.1858.1053" timestamp="1605646036154" />
+    <state x="480" y="188" width="1022" height="737" key="SettingsEditor" timestamp="1605649649875">
+      <screen x="62" y="27" width="1858" height="1053" />
+    </state>
+    <state x="480" y="188" width="1022" height="737" key="SettingsEditor/62.27.1858.1053@62.27.1858.1053" timestamp="1605649649875" />
+    <state width="929" height="526" key="XDebugger.FullValuePopup" timestamp="1605669255367">
+      <screen x="62" y="27" width="1858" height="1053" />
+    </state>
+    <state width="929" height="526" key="XDebugger.FullValuePopup/62.27.1858.1053@62.27.1858.1053" timestamp="1605669255367" />
+    <state x="872" y="443" width="367" height="297" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1605647290291">
+      <screen x="62" y="27" width="1858" height="1053" />
+    </state>
+    <state x="872" y="443" width="367" height="297" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/62.27.1858.1053@62.27.1858.1053" timestamp="1605647290291" />
+    <state x="824" y="325" width="753" height="608" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1605676638157">
+      <screen x="62" y="27" width="1858" height="1053" />
+    </state>
+    <state x="824" y="325" width="753" height="608" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/62.27.1858.1053@62.27.1858.1053" timestamp="1605676638157" />
     <state x="682" y="292" width="618" height="522" key="find.popup" timestamp="1605597699282">
       <screen x="62" y="27" width="1858" height="1053" />
     </state>
@@ -252,9 +332,30 @@
       <screen x="62" y="27" width="1858" height="1053" />
     </state>
     <state x="655" y="252" key="run.anything.popup/62.27.1858.1053@62.27.1858.1053" timestamp="1605583000306" />
-    <state x="654" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1605591317043">
+    <state x="654" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1605683148822">
       <screen x="62" y="27" width="1858" height="1053" />
     </state>
-    <state x="654" y="259" width="672" height="678" key="search.everywhere.popup/62.27.1858.1053@62.27.1858.1053" timestamp="1605591317043" />
+    <state x="654" y="259" width="672" height="678" key="search.everywhere.popup/62.27.1858.1053@62.27.1858.1053" timestamp="1605683148822" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Repository/InventoryRepository.php</url>
+          <line>144</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php</url>
+          <line>667</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/tests/Unit/Repository/InventoryRepository.php</url>
+          <line>89</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
