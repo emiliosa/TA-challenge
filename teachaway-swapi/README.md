@@ -6,7 +6,8 @@ This implementation extends SWAPI and enrich with inventory of starships and veh
 
 ### How it works?
 When you make a request, this API will request to /vehicles or /starships from SWAPI and automatically go to every available page and count results, then save to database with payload.<br>
-Every endpoint has its own validations that makes you easier to know how to use it. 
+Every endpoint has its own validations that makes you easier to know how to use it.<br>
+**NOTE:** Guzzle has 60 seconds for timeout, after this asumes that SWAPI service didnt response and use an empty response as default.
 
 ### Requirements
 - Docker
@@ -93,9 +94,10 @@ curl --location --request POST 'http://0.0.0.0:8080/api/inventory/1/decrement' -
     ```shell script
     docker-compose up -d --build
     ```
-3. Run composer: 
+3. Run composer and copy .env file: 
     ```shell script
     docker exec -i teachaway-swapi composer install
+    docker exec -i teachaway-swapi cp .env.example .env
     ```
 4. Create schema: 
     ```shell script
